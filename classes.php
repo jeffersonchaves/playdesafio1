@@ -29,20 +29,32 @@ class CanalYoutube {
   
   
   public static function getVideos() {
-    //return self::getIdVideosFromAPI();
+    $idVideosAPI = self::getIdVideosFromAPI();
+    $videosDesafio = 100;
+    $videosQueFaltam = $videosDesafio - count($idVideosAPI);
     
-    return self::getImageFromAPI("teste");
-    // $video1 = new Video("image1", "link1");
-    // $video2 = new Video("image2", "link2");
-    // $video3 = new Video("image3", "link3");
+    $videos = array();
     
-    // return array($video1, $video2, $video3);
-
+    for ($i = 1; $i <= $videosQueFaltam; $i++) {
+      $semVideo = new Video("https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180", "#");
+      array_push($videos, $semVideo);   
+    }
+    
+    foreach ($idVideosAPI as $umVideoId) {
+      $image = self::getImageFromAPI($umVideoId); 
+      $link = "https://www.youtube.com/watch?v=" . $umVideoId;
+        
+      $video = new Video($image, $link);
+      
+      array_push($videos, $video);
+    }
+    
+    return $videos;
   }
 }
 
 echo "<pre>";
-echo CanalYoutube::getVideos();
+var_dump(CanalYoutube::getVideos());
 echo "</pre>";
 
 
