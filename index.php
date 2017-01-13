@@ -1,3 +1,7 @@
+<?php
+  require('classes.php');
+  $videos = CanalYoutube::getVideos();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,32 +11,17 @@
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  
-  <h1>Oi <?php echo 5 + 3; ?></h1>
-  
+    
   <div class="cabecalho">
     <h1>#desafio100videos</h1>
-    <h2>Faltam 13 vídeos</h2>
+    <h1>Faltam 13 vídeos</h1>
   </div>
-  
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=320&h=180">
 
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
-  <img src="https://i.ytimg.com/vi/lsGyg3r0Qs8/mqdefault.jpg">
+  <?php foreach($videos as $video): ?> 
+    <a target="_blank" href="<?php echo $video->link ?>">
+      <img src="<?php echo $video->image ?>">
+    </a>
+  <?php endforeach; ?>
   
 </body>
 </html>

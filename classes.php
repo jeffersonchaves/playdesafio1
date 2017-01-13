@@ -53,12 +53,6 @@ class CanalYoutube {
   }
 }
 
-echo "<pre>";
-var_dump(CanalYoutube::getVideos());
-echo "</pre>";
-
-
-
 
 
 
