@@ -12,8 +12,11 @@ class Video {
 
 class CanalYoutube {
   
+  const API_VIDEOS = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyClCOU5qwH_nxQfZZr4IhtPtMqWwUiI_pA&part=id&channelId=UCTJ1mLre8sT-d4KuvmQsSQA&publishedAfter=2016-11-21T00:00:00Z&maxResults=50';
+  const API_VIDEO_IMAGE = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyClCOU5qwH_nxQfZZr4IhtPtMqWwUiI_pA&part=snippet";
+  
   private function getIdVideosFromAPI() {
-    $url = "https://api.myjson.com/bins/ec9qf";
+    $url = self::API_VIDEOS;
     $json = file_get_contents($url);
     $data = json_decode($json);
     return array_map(function($item) { return $item->id->videoId; }, $data->items);
@@ -21,7 +24,7 @@ class CanalYoutube {
   
   
   private function getImageFromAPI($videoId) {
-    $url = "https://api.myjson.com/bins/1e4f6v";
+    $url = self::API_VIDEO_IMAGE . "&id=$videoId";
     $json = file_get_contents($url);
     $data = json_decode($json);
     return $data->items[0]->snippet->thumbnails->medium->url;

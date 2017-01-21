@@ -1,6 +1,11 @@
 <?php
   require('classes.php');
   $videos = CanalYoutube::getVideos();
+  
+  $videosFaltam = array_filter($videos, function($k) {
+    return $k->link == "#";
+  });  
+  
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +19,7 @@
     
   <div class="cabecalho">
     <h1>#desafio100videos</h1>
-    <h1>Faltam 13 vídeos</h1>
+    <h2>Faltam <?php echo count($videosFaltam); ?> vídeos</h2>
   </div>
 
   <?php foreach($videos as $video): ?> 
